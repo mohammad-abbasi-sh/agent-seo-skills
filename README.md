@@ -1,5 +1,7 @@
 # agent-seo-skills
 
+[🇮🇷 توضیحات فارسی](README-fa.md)
+
 **Give your AI agent SEO hands.** A growing pack of [Agent Skills](https://agentskills.io) + an MCP server that turn Claude Code, Claude Desktop, Cursor, Codex and other agents into an SEO operator — local-first, zero API keys, zero dependencies (Python standard library only).
 
 Most SEO-for-agents tools need paid API keys or OAuth connections. This pack works on any public URL, offline-friendly, with deterministic scripts your agent runs and reads — no invented metrics, ever.
