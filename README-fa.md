@@ -4,14 +4,15 @@
 
 بیشتر ابزارهای سئو برای ایجنت‌ها به API key پولی یا اتصال OAuth نیاز دارند. این پک روی هر URL عمومی کار می‌کند، آفلاین‌دوست است و با اسکریپت‌های قطعی که ایجنت اجرا می‌کند و می‌خواند — بدون هیچ متریک ساختگی، هرگز.
 
-## چه چیزی داخلش است (نسخه ۰٫۱)
+## چه چیزی داخلش است (نسخه ۰٫۲)
 
 | بخش | چه کار می‌کند |
 |---|---|
 | `skills/site-audit` | اسکیل ایجنت: ممیزی هر صفحه (title، meta، H1، canonical، robots، OG، JSON-LD، تصاویر/alt، لینک‌ها، تعداد کلمات) ← امتیاز ۰ تا ۱۰۰ + اصلاحات اولویت‌بندی‌شده |
+| `skills/striking-distance` | اسکیل ایجنت: تحلیل CSV خروجی سرچ کنسول — کوئری‌های striking-distance (رتبه ۸ تا ۲۰)، فرصت‌های CTR در برابر هم‌رتبه‌ها، کنیبالیزیشن کلمات کلیدی |
 | `mcp-server/` | سرور MCP بدون وابستگی که همان موتور ممیزی را به‌صورت ابزار `audit_url` در اختیار هر کلاینت MCP می‌گذارد |
 
-در نقشه راه (هر هفته یک اسکیل جدید): `striking-distance` (فرصت‌ها از CSV سرچ کنسول)، `schema-forge` (سازنده JSON-LD)، `ai-visibility-check` (آمادگی برای خزنده‌های هوش مصنوعی و llms.txt)، `persian-keyword-tools` (نرمال‌سازی و خوشه‌بندی کلمات کلیدی فارسی با Hazm).
+در نقشه راه (هر هفته یک اسکیل جدید): `schema-forge` (سازنده JSON-LD)، `ai-visibility-check` (آمادگی برای خزنده‌های هوش مصنوعی و llms.txt)، `persian-keyword-tools` (نرمال‌سازی و خوشه‌بندی کلمات کلیدی فارسی با Hazm).
 
 ## استفاده در Claude Code
 
@@ -49,6 +50,7 @@ claude mcp add agent-seo -- python3 /path/to/agent-seo-skills/mcp-server/seo_mcp
 
 ```bash
 python3 skills/site-audit/scripts/seo_audit.py https://example.com --json
+python3 skills/striking-distance/scripts/gsc_analyze.py <gsc-export.csv>
 ```
 
 ## تست‌ها
