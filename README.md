@@ -6,14 +6,15 @@
 
 Most SEO-for-agents tools need paid API keys or OAuth connections. This pack works on any public URL, offline-friendly, with deterministic scripts your agent runs and reads — no invented metrics, ever.
 
-## What's inside (v0.1)
+## What's inside (v0.2)
 
 | Piece | What it does |
 |---|---|
 | `skills/site-audit` | Agent Skill: audit any page (title, meta, H1, canonical, robots, OG, JSON-LD, images/alt, links, word count) → 0–100 score + prioritized fixes |
+| `skills/striking-distance` | Agent Skill: analyze a Search Console CSV export — striking-distance queries (positions 8–20), CTR opportunities vs position peers, keyword cannibalization |
 | `mcp-server/` | Zero-dependency MCP server exposing the same audit engine as an `audit_url` tool to any MCP client |
 
-On the roadmap (one new skill per week): `striking-distance` (Search Console CSV opportunities), `schema-forge` (JSON-LD generator), `ai-visibility-check` (AI-crawler & llms.txt readiness), `persian-keyword-tools` (Hazm-powered keyword normalization/clustering).
+On the roadmap (one new skill per week): `schema-forge` (JSON-LD generator), `ai-visibility-check` (AI-crawler & llms.txt readiness), `persian-keyword-tools` (Hazm-powered keyword normalization/clustering).
 
 ## Use it in Claude Code
 
@@ -51,6 +52,7 @@ Then ask: **"Use audit_url on https://example.com"**.
 
 ```bash
 python3 skills/site-audit/scripts/seo_audit.py https://example.com --json
+python3 skills/striking-distance/scripts/gsc_analyze.py <gsc-export.csv>
 ```
 
 ## Tests
