@@ -6,15 +6,16 @@
 
 Most SEO-for-agents tools need paid API keys or OAuth connections. This pack works on any public URL, offline-friendly, with deterministic scripts your agent runs and reads — no invented metrics, ever.
 
-## What's inside (v0.2)
+## What's inside (v0.3)
 
 | Piece | What it does |
 |---|---|
 | `skills/site-audit` | Agent Skill: audit any page (title, meta, H1, canonical, robots, OG, JSON-LD, images/alt, links, word count) → 0–100 score + prioritized fixes |
 | `skills/striking-distance` | Agent Skill: analyze a Search Console CSV export — striking-distance queries (positions 8–20), CTR opportunities vs position peers, keyword cannibalization |
+| `skills/schema-forge` | Agent Skill: generate and validate schema.org JSON-LD (LocalBusiness, Article, FAQPage, Product) — required/recommended field checks the way Google does, plus value checks (dates, URLs, prices, ratings) |
 | `mcp-server/` | Zero-dependency MCP server exposing the same audit engine as an `audit_url` tool to any MCP client |
 
-On the roadmap (one new skill per week): `schema-forge` (JSON-LD generator), `ai-visibility-check` (AI-crawler & llms.txt readiness), `persian-keyword-tools` (Hazm-powered keyword normalization/clustering).
+On the roadmap (one new skill per week): `ai-visibility-check` (AI-crawler & llms.txt readiness), `persian-keyword-tools` (Hazm-powered keyword normalization/clustering).
 
 ## Use it in Claude Code
 
@@ -53,6 +54,7 @@ Then ask: **"Use audit_url on https://example.com"**.
 ```bash
 python3 skills/site-audit/scripts/seo_audit.py https://example.com --json
 python3 skills/striking-distance/scripts/gsc_analyze.py <gsc-export.csv>
+python3 skills/schema-forge/scripts/schema_forge.py generate --type FAQPage --spec skills/schema-forge/scripts/examples/faq.json
 ```
 
 ## Tests
@@ -62,6 +64,8 @@ python3 -m unittest discover -s tests -v
 ```
 
 Hermetic end-to-end test: serves a fixture page locally, performs the MCP handshake, calls `audit_url`, and validates the report.
+
+Each skill ships its own test suite, run from the skill's directory — e.g. `python3 -m unittest discover -s skills/schema-forge/tests -v` (24 tests: generation, validation rules, HTML extraction, CLI round-trips).
 
 ## Principles
 
